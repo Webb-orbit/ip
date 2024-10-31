@@ -35,12 +35,14 @@ export default function Home() {
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
               src/app/page.tsx
             </code>
+          </li>
+            {subsets && <div>
             <li>{subsets?.networkAddress}</li>
             <li>{subsets?.firstAddress}</li>
             <li>{subsets?.lastAddress}</li>
             <li>{subsets?.broadcastAddress}</li>
             <li>{subsets?.subnetMask}</li>
-          </li>
+            </div>}
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
