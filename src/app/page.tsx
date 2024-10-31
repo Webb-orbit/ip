@@ -4,13 +4,12 @@ import ip from "ip"
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [privateip, setprivateip] = useState("")
-  const [publicip, setpublicip] = useState("")
+  const [subsets, setsubsets] = useState({})
+
   useEffect(()=>{
-    const privateip = ip.address('private', 'ipv4')
-    const publicip = ip.address('public', 'ipv4')
-    setprivateip(privateip)
-    setpublicip(publicip)
+    const subset = ip.subnet('192.168.1.134', '255.255.255.192')
+    setsubsets(subset)
+    console.log(subset);
   },[])
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -29,10 +28,12 @@ export default function Home() {
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
               src/app/page.tsx
             </code>
-            .
+            <li>{subsets?.networkAddress}</li>
+            <li>{subsets?.firstAddress}</li>
+            <li>{subsets?.lastAddress}</li>
+            <li>{subsets?.broadcastAddress}</li>
+            <li>{subsets?.subnetMask}</li>
           </li>
-          <li>your publicip: {publicip}</li>
-          <li>your privateip: {privateip}</li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
