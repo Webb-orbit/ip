@@ -2,9 +2,16 @@
 import Image from "next/image";
 import ip from "ip"
 import { useEffect, useState } from "react";
+interface ipadd {
+  networkAddress: string,
+  firstAddress: string,
+  lastAddress: string,
+  broadcastAddress: string,
+  subnetMask: string,
+}
 
 export default function Home() {
-  const [subsets, setsubsets] = useState({})
+  const [subsets, setsubsets] = useState<ipadd | null>(null)
 
   useEffect(()=>{
     const subset = ip.subnet('192.168.1.134', '255.255.255.192')
